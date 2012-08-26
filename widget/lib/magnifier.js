@@ -2,14 +2,23 @@
 	var global = this;
 	
 	// widget constructor function
-	global.magnifier = function( opts) {
+	if ( !global.pl ) {
+		global.pl = {};
+	}
+	
+	if ( !global.pl.ryrych ) {
+		global.pl.ryrych = {};
+	}	
+	
+	// widget constructor function
+	global.pl.ryrych.rzoom = function( opts) {
 		var options = {
 				width: opts.width || 300,
 				height:	opts.height || 300,
 				offset: opts.offset || 0,
 				parent: opts.parentId
 			},
-			helpers = new myHelpers(),
+			helpers = new global.pl.ryrych.helpers(),
 		
 		_add = function( image ) {
 			var _realSizeImage,
@@ -176,7 +185,7 @@
 		};
 	};
 	
-	myHelpers = function() {
+	global.pl.ryrych.helpers = function() {
 		this.addEvent = function( obj, type, fn ) {
 			if ( obj.attachEvent ) {
 				obj["e" + type + fn] = fn;
